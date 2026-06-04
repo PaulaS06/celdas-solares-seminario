@@ -666,5 +666,89 @@ body {
 .pyramid-label-row:nth-child(1){ animation-delay: 0.25s; }
 .pyramid-label-row:nth-child(2){ animation-delay: 0.40s; }
 .pyramid-label-row:nth-child(3){ animation-delay: 0.55s; }
+/* ══ INTERACTIVE CELL SLIDE ══ */
+.fv-step {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  background: var(--surface);
+  transition: all 0.2s;
+  margin-bottom: 0.5rem;
+}
+.fv-step:hover { border-color: var(--navy-border); background: var(--navy-pale); }
+.fv-step.active {
+  border-color: var(--navy);
+  background: var(--navy-pale);
+  box-shadow: var(--shadow-md);
+}
+.fv-num {
+  font-family: var(--display); font-size: 1.4rem; font-weight: 800;
+  color: var(--navy-pale); line-height: 1; flex-shrink: 0;
+  transition: color 0.2s;
+}
+.fv-step.active .fv-num { color: var(--navy); }
+.fv-content { display: flex; flex-direction: column; gap: 2px; }
+.fv-content strong { font-size: 0.88rem; color: var(--ink); font-weight: 600; }
+.fv-content span { font-size: 0.78rem; color: var(--ink3); }
+
+.layer-item {
+  display: flex; align-items: center; gap: 0.9rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--surface);
+  transition: all 0.2s;
+  margin-bottom: 0.4rem;
+}
+.layer-item:hover { border-color: var(--navy-border); background: var(--navy-pale); }
+.layer-item.active {
+  border-color: var(--navy);
+  background: var(--navy-pale);
+  box-shadow: var(--shadow-sm);
+}
+.layer-bar {
+  width: 6px; min-height: 36px; border-radius: 3px; flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.layer-item.active .layer-bar { transform: scaleY(1.2); }
+.layer-content { display: flex; flex-direction: column; gap: 1px; }
+.layer-content strong { font-size: 0.84rem; color: var(--ink); font-weight: 600; }
+.layer-content span { font-size: 0.75rem; color: var(--ink3); }
+/* ══ RETO CARDS ══ */
+.reto-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.4rem 1rem;
+  background: var(--surface);
+  display: flex; flex-direction: column;
+  align-items: center; text-align: center;
+  gap: 0.4rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s, border-color 0.2s;
+  border-top: 3px solid var(--navy);
+}
+.reto-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--navy);
+}
+.reto-card.reto-highlight { border-top-color: var(--red); }
+.reto-icon { font-size: 1.8rem; line-height: 1; }
+.reto-num {
+  font-family: var(--mono); font-size: 0.58rem;
+  color: var(--ink3); letter-spacing: 0.12em;
+}
+.reto-title {
+  font-family: var(--display); font-size: 1rem;
+  font-weight: 700; color: var(--ink);
+  line-height: 1.2; letter-spacing: -0.01em;
+}
+.reto-line {
+  font-size: 0.75rem; color: var(--ink3);
+  line-height: 1.45; margin-top: 2px;
+}
+
 hr.sep { border: none; border-top: 1px solid var(--border); margin: 1.2rem 0; }
 a { color: var(--navy); }
