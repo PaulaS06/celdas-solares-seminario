@@ -672,7 +672,6 @@
 
 <!-- 4.1 -->
 <section class="slide">
-  <div class="s-eyebrow">B4 · Difracción de rayos X</div>
   <h2 class="s-title">Patrón XRD de <em>Cs₂PbCl₆</em></h2>
   <p class="s-sub">PyXtal + Matplotlib · Ley de Bragg: nλ = 2d·sin(θ)</p>
 
@@ -716,9 +715,7 @@
     </div>
     <div class="col">
       <div class="ph" style="min-height:270px;">
-        <span class="ph-ico">📊</span>
-        <span class="ph-lbl">Patrón XRD de Cs₂PbCl₆<br>Sticks — Sumas gaussianas</span>
-        <span class="ph-note">[ insertar Imágenes 1 y 2 del Proyecto de Aula ]</span>
+        <img src="grafica_patron.png" alt="material perovskita" style="width:100%; border-radius:8px;">
       </div>
       <div class="card teal">
         <div class="card-lbl">Interpretación</div>
@@ -763,15 +760,10 @@
         </table>
         <div class="cite">Proyecto de Aula · Sección 8</div>
       </div>
-      <div class="hl">
-        <p>Las réplicas (3,3,1), (5,5,1) y (7,4,1) permiten visualizar <strong>periodicidad</strong> y comparar densidades atómicas superficiales.</p>
-      </div>
     </div>
     <div class="col">
       <div class="ph" style="min-height:260px;">
-        <span class="ph-ico">🔬</span>
-        <span class="ph-lbl">Superficies (2,2,0) · (13,3,3) · (1,1,1)<br>Visualización normal y replicada</span>
-        <span class="ph-note">[ insertar Imagen 4 del Proyecto de Aula ]</span>
+        <img src="superficie_visual.png" alt="material perovskita" style="width:100%; border-radius:8px;">
       </div>
       <a class="btn-nb" href="https://drive.google.com/file/d/1Hx69mAHYlFZvvupGfQsPJ71Av5IamZIG/view?usp=sharing" target="_blank" style="margin-top:0.3rem;">↗ Ver notebook superficies</a>
     </div>
@@ -792,8 +784,8 @@
 <!-- 5.1 -->
 <section class="slide">
   <div class="s-eyebrow">B5 · Nanopartículas</div>
-  <h2 class="s-title">Nanopartículas de <em>Cu</em> y bimetálica Cu-Ni</h2>
-  <p class="s-sub">ASE + Wulffpack · Metal de transición: Cobre (Cu) fcc · a = 3.58 Å</p>
+  <h2 class="s-title">Nanopartículas de <em>Pb</em></h2>
+  <p class="s-sub">ASE + Wulffpack · Metal de transición: Plomo (Pb) fcc · a = 4.95 Å · Elemento B de Cs₂PbCl₆</p>
 
   <div class="g2">
     <div class="col">
@@ -802,39 +794,49 @@
         <table class="t">
           <thead><tr><th>Átomos</th><th>Tamaño (Å)</th><th>En nm</th></tr></thead>
           <tbody>
-            <tr><td>500</td><td>20.252 Å</td><td><strong>2.025 nm</strong></td></tr>
-            <tr><td>2,000</td><td>32.909 Å</td><td><strong>3.291 nm</strong></td></tr>
-            <tr><td>5,000</td><td>45.566 Å</td><td><strong>4.557 nm</strong></td></tr>
-            <tr><td>10,000</td><td>58.278 Å</td><td><strong>5.828 nm</strong></td></tr>
+            <tr><td>500</td><td>—</td><td>—</td></tr>
+            <tr><td>2,000</td><td>—</td><td>—</td></tr>
+            <tr><td>5,000</td><td>—</td><td>—</td></tr>
+            <tr><td>10,000</td><td>—</td><td>—</td></tr>
           </tbody>
         </table>
-        <div class="cite">Proyecto de Aula · Sección 9 · Tabla 4</div>
+        <div class="cite">Proyecto de Aula · Sección 9</div>
       </div>
+
       <div class="hl gold">
-        <p>Con <strong>10,000 átomos</strong> el tamaño es ~5.8 nm. La escala <strong>nano</strong> (1–100 nm) y la escala <strong>micro</strong> (1,000 nm) están separadas por órdenes de magnitud.</p>
+        <p>El <strong>Pb</strong> es el catión metálico divalente (posición B) de <strong>Cs₂PbCl₆</strong>. Modelar su nanopartícula extiende el análisis computacional del mismo material estudiado.</p>
       </div>
+
       <div class="nb">
         <div class="nb-head">
           <div class="nb-icon">⚛️</div>
-          <div class="nb-info"><span class="nb-name">nanopariculas.ipynb · Cu-Ni bimetálica</span><span class="nb-badge">ASE · Wulffpack</span></div>
+          <div class="nb-info">
+            <span class="nb-name">nanopariculas.ipynb</span>
+            <span class="nb-badge">ASE · Wulffpack · Pb fcc</span>
+          </div>
         </div>
         <div class="nb-body">
           <ol class="nb-steps">
-            <li>XRD del Cu → energías superficiales (1,1,1), (2,0,0), (4,2,0)</li>
-            <li><span class="fm">SingleCrystal</span> de Wulffpack → nanopartícula</li>
-            <li>Cu-Ni: reemplazar 60% de átomos por Ni con NumPy aleatorio</li>
-            <li>Resultado: <span class="fm">Cu769Ni1152</span> — nanopartícula bimetálica</li>
+            <li>Obtener estructura Pb (mp-20483) desde Materials Project en formato CIF</li>
+            <li>Calcular XRD con PyXtal → identificar 3 picos más intensos</li>
+            <li>Definir energías superficiales → <span class="fm">SingleCrystal</span> de Wulffpack</li>
+            <li>Construir nanopartículas con 500, 2k, 5k y 10k átomos · visualizar con ASE</li>
           </ol>
-          <a class="btn-nb" href="https://drive.google.com/file/d/1Rm_oEqc2Vg9lmCvFY4Hsi5YHUSnJMuAQ/view?usp=sharing" target="_blank">↗ Ver notebook</a>
+          <a class="btn-nb" href="https://drive.google.com/file/d/1Rp_F0Mvav2ee0VARhcNnR2qZuI1I3XPw/view?usp=sharing" target="_blank">↗ Ver notebook</a>
         </div>
       </div>
     </div>
+
     <div class="col">
-      <div class="ph" style="min-height:220px;"><span class="ph-ico">⚛️</span><span class="ph-lbl">Nanopartículas Cu — 500, 2k, 5k, 10k átomos<br>Wulffpack + ASE</span><span class="ph-note">[ insertar Imagen 5 del Proyecto de Aula ]</span></div>
-      <div class="ph" style="min-height:150px;"><span class="ph-ico">●●</span><span class="ph-lbl">Cu original vs. Cu-Ni bimetálica</span><span class="ph-note">[ insertar Imagen 6 del Proyecto de Aula ]</span></div>
+      <div class="ph" style="min-height:380px;">
+        <span class="ph-ico">⚛️</span>
+        <span class="ph-lbl">Nanopartículas Pb — 500, 2k, 5k, 10k átomos<br>Wulffpack + ASE</span>
+        <span class="ph-note">[ insertar imagen nanopartículas Pb ]</span>
+      </div>
     </div>
   </div>
-  <div class="s-foot"><span>B5 · Nanopartículas</span><span>Proyecto de Aula · Secciones 9–10</span></div>
+
+  <div class="s-foot"><span>B5 · Nanopartículas Pb</span><span>Proyecto de Aula · Sección 9</span></div>
 </section>
 
 <!-- 5.2 Conclusiones -->
