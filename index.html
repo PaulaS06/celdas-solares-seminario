@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Celdas Solares — Química Computacional 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="main.js" defer></script>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">Celdas Solares</div>
+  <div class="nav-pills">
+    <button class="nav-pill" onclick="go('b1')">B1 · Contexto</button>
+    <button class="nav-pill" onclick="go('b2')">B2 · Perovskitas</button>
+    <button class="nav-pill" onclick="go('b3')">B3 · Minería</button>
+    <button class="nav-pill" onclick="go('b4')">B4 · Difracción</button>
+    <button class="nav-pill" onclick="go('b5')">B5 · Nanopart.</button>
+    <button class="nav-pill" onclick="go('refs')">Refs</button>
+  </div>
+  <div class="timer-zone">
+    <button class="t-btn" onclick="toggleTimer()" id="tbtn">▶</button>
+    <span id="timer-disp">40:00</span>
+    <button class="t-btn" onclick="resetTimer()">↺</button>
+  </div>
+</nav>
+
+<div class="prog-wrap"><div id="pbar" style="width:0%"></div></div>
+
+<div class="slides">
+
+<!-- ══ PORTADA ══ -->
+<section class="cover" id="cover">
+  <div class="cover-band"></div>
+  <div class="cover-deco"></div>
+  <div class="cover-deco2"></div>
+
+  <div class="cover-inner">
+    <div class="cover-eyebrow">
+      <span class="cover-eyebrow-badge">Química Computacional 1</span>
+      <div class="cover-eyebrow-sep"></div>
+      <span class="cover-eyebrow-uni">Universidad de Medellín · 2026-1</span>
+    </div>
+
+    <h1 class="cover-title">
+      Celdas<br><em>Solares</em>
+    </h1>
+
+    <p class="cover-sub">De la química a la luz</p>
+
+    <div class="cover-meta">
+      <div class="cmi"><strong>Estudiante</strong><span>Paula S. Meneses Gasca</span></div>
+      <div class="cmi"><strong>Profesor</strong><span>Carlos A. Jiménez Orozco</span></div>
+      <div class="cmi"><strong>Formato</strong><span>Colloquium · 40 min</span></div>
+    </div>
+
+    <div class="cover-tl">
+      <div class="tl-item active" onclick="go('b1')">1. Contexto energético</div>
+      <div class="tl-item" onclick="go('b2')">2. Perovskitas</div>
+      <div class="tl-item" onclick="go('b3')">3. Minería de datos</div>
+      <div class="tl-item" onclick="go('b4')">4. Difracción + Superficies</div>
+      <div class="tl-item" onclick="go('b5')">5. Nanopartículas + Conclusiones</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ PIRÁMIDE INVERTIDA ══ -->
+<section class="pyramid-slide">
+  <div class="s-eyebrow">Estructura del proyecto — Pirámide invertida</div>
+  <h2 class="s-title">Hilo conductor de la <em>investigación</em></h2>
+
+  <div class="pyramid-wrap">
+    <div class="pyramid-svg-col">
+      <svg width="260" height="480" viewBox="0 0 260 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g class="pyr-level">
+          <path d="M10 20 L250 20 L220 90 L40 90 Z"
+            fill="rgba(15,45,92,0.06)" stroke="#0f2d5c" stroke-width="2.5" stroke-linejoin="round"/>
+        </g>
+        <g class="pyr-level">
+          <path d="M40 108 L220 108 L196 174 L64 174 Z"
+            fill="rgba(15,45,92,0.10)" stroke="#0f2d5c" stroke-width="2.5" stroke-linejoin="round"/>
+        </g>
+        <g class="pyr-level">
+          <path d="M64 192 L196 192 L174 256 L86 256 Z"
+            fill="rgba(15,45,92,0.15)" stroke="#0f2d5c" stroke-width="2.5" stroke-linejoin="round"/>
+        </g>
+        <g class="pyr-level">
+          <path d="M86 274 L174 274 L130 358 Z"
+            fill="rgba(15,45,92,0.22)" stroke="#0f2d5c" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="130" cy="370" r="7" fill="#0f2d5c"/>
+        </g>
+        <line x1="220" y1="55"  x2="252" y2="55"  stroke="#0f2d5c" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
+        <line x1="220" y1="141" x2="252" y2="141" stroke="#0f2d5c" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
+        <line x1="196" y1="224" x2="252" y2="224" stroke="#0f2d5c" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
+        <line x1="174" y1="316" x2="252" y2="316" stroke="#0f2d5c" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
+      </svg>
+    </div>
+
+    <div class="pyramid-labels">
+      <div class="pyramid-label-row">
+        <span class="pyr-arrow">→</span>
+        <div>
+          <p class="pyr-text">¿Qué son las <em>celdas solares?</em></p>
+          <p class="pyr-sub">Efecto fotovoltaico · Estructura de capas · Generaciones</p>
+        </div>
+      </div>
+      <div class="pyramid-label-row">
+        <span class="pyr-arrow">→</span>
+        <div>
+          <p class="pyr-text"><em>Materiales</em> específicos</p>
+          <p class="pyr-sub">Perovskitas halogenadas · Estructura ABX₃ · Comparación Si</p>
+        </div>
+      </div>
+      <div class="pyramid-label-row">
+        <span class="pyr-arrow">→</span>
+        <div>
+          <p class="pyr-text">Retos <em>generales del área</em></p>
+          <p class="pyr-sub">Estabilidad · Escalabilidad · Toxicidad · Costo · Reproducibilidad</p>
+        </div>
+      </div>
+      <div class="pyramid-label-row">
+        <span class="pyr-arrow">→</span>
+        <div>
+          <p class="pyr-text"><em>Reto principal</em></p>
+          <p class="pyr-sub">Estabilidad del material · Rol de la química computacional</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="s-foot">
+    <span>Estructura del estado del arte</span>
+    <span>Celdas Solares · Proyecto de Aula</span>
+  </div>
+</section>
+
+
+<!-- ══ BLOQUE 1 ══ -->
+<div class="bdiv" id="b1">
+  <div class="bdiv-num">01</div>
+  <div class="bdiv-content">
+    <div class="bdiv-tag">Bloque 1 · 10 minutos</div>
+    <div class="bdiv-title">Contexto Energético Global</div>
+  </div>
+  <div class="bdiv-time">10 min</div>
+</div>
+
+<!-- 1.1 -->
+<section class="slide">
+  <div class="s-eyebrow">B1 · Contexto</div>
+  <h2 class="s-title">¿Por qué <em>energía solar?</em></h2>
+  <p class="s-sub">Un problema de conversión eficiente, no de disponibilidad</p>
+
+  <div class="g2">
+    <div class="col">
+      <div class="card navy">
+        <div class="card-lbl">El problema central</div>
+        <ul class="kp">
+          <li>Aumento de la demanda energética global</li>
+          <li>Deseo de recursos energéticos <strong>amigables con el medio ambiente</strong></li>
+          <li>Necesidad de reducir la dependencia de los <strong>combustibles fósiles</strong></li>
+          <li><strong>Sol</strong> = fuente más abundante · Reto: convertirla eficientemente y a bajo costo</li>
+        </ul>
+        <div class="cite">[5] Asim et al., 2012</div>
+      </div>
+      <div class="hl">
+        <p>El sol entrega más energía en una <strong>hora</strong> de la que la humanidad consume en un <strong>año</strong>. El problema no es disponibilidad — es <strong>conversión eficiente</strong>.</p>
+        <div class="cite">[5]</div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="stats" style="grid-template-columns:repeat(2,1fr);">
+        <div class="stat"><span class="stat-n">&gt;27%</span><span class="stat-l">PCE perovskita<br>celda simple 2024</span></div>
+        <div class="stat"><span class="stat-n">&gt;34%</span><span class="stat-l">PCE tándem<br>Si / Perovskita</span></div>
+        <div class="stat"><span class="stat-n">3.8%</span><span class="stat-l">PCE perovskita<br>en 2009</span></div>
+        <div class="stat"><span class="stat-n">−90%</span><span class="stat-l">Caída costo solar<br>última década</span></div>
+      </div>
+      <div class="cite" style="text-align:right;">[1][3][5]</div>
+    </div>
+  </div>
+  <div class="s-foot"><span>B1 · Contexto energético</span><span>[5] Asim et al., 2012</span></div>
+</section>
+
+<!-- 1.2 -->
+<section class="slide">
+  <div class="s-eyebrow">B1 · Liderazgo global</div>
+  <h2 class="s-title">Crecimiento <em>mundial</em> y economía fotovoltaica</h2>
+  <p class="s-sub">Países líderes y costos de fabricación por tecnología</p>
+
+  <div class="g2">
+    <div class="col">
+      <div class="card navy">
+        <div class="card-lbl">Países líderes</div>
+        <ul class="kp">
+          <li><strong>China:</strong> mayor capacidad instalada del mundo, principal fabricante</li>
+          <li><strong>EE.UU.:</strong> grandes parques solares e investigación avanzada</li>
+          <li><strong>India:</strong> crecimiento más rápido — alta demanda + programas de gobierno</li>
+          <li><strong>Alemania:</strong> pionera en adopción masiva, referente en transición energética</li>
+        </ul>
+        <div class="cite">Complemento · IEA, IRENA</div>
+      </div>
+      <div class="hl teal">
+        <p>La creciente demanda mundial impulsa la búsqueda de materiales con <strong>mayores eficiencias y menores costos</strong> — de ahí el interés en perovskitas solares.</p>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <div class="card-lbl">Comparación económica (precios reales Colombia)</div>
+        <table class="t">
+          <thead><tr><th>Tecnología</th><th>Precio aprox.</th><th>Potencia</th></tr></thead>
+          <tbody>
+            <tr><td>Silicio monocristalino</td><td>$675.000 COP</td><td><span class="tag tag-n">405 W</span></td></tr>
+            <tr><td>Silicio monocristalino</td><td>$939.000 COP</td><td><span class="tag tag-n">505 W</span></td></tr>
+            <tr><td>Perovskita Panel</td><td>$269.000 COP</td><td><span class="tag tag-g">150 W</span></td></tr>
+            <tr><td>Perovskita Panel</td><td>$5.013.000 COP</td><td><span class="tag tag-g">90 W</span></td></tr>
+          </tbody>
+        </table>
+        <div class="cite">Complemento · NREL, DOE, IEA</div>
+      </div>
+      <div class="hl gold">
+        <p>Las perovskitas <strong>no son más baratas hoy</strong>. Su ventaja es el <strong>potencial futuro</strong>: fabricación en solución a bajas temperaturas.</p>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>B1 · Liderazgo global</span><span>Complemento · NREL, IEA, IRENA</span></div>
+</section>
+
+<!-- 1.3 -->
+<section class="slide">
+  <div class="s-eyebrow">B1 · Generaciones fotovoltaicas</div>
+  <h2 class="s-title">Tres <em>generaciones</em> de materiales fotovoltaicos</h2>
+  <p class="s-sub">Evolución desde el silicio cristalino hasta las perovskitas</p>
+
+  <table class="t" style="margin-bottom:1.5rem;">
+    <thead><tr><th>Generación</th><th>Materiales principales</th><th>PCE máx.</th><th>Limitación central</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag tag-n">1ª Gen.</span></td><td>Silicio cristalino (c-Si, mc-Si)</td><td>~26% lab / ~22% comercial</td><td>Fabricación costosa y energéticamente intensiva</td></tr>
+      <tr><td><span class="tag tag-g">2ª Gen.</span> Thin Film</td><td>CdTe, CIGS, silicio amorfo</td><td>~22% CdTe / ~14% a-Si</td><td>Toxicidad de Cd, escasez de In y Te</td></tr>
+      <tr><td><span class="tag tag-t">3ª Gen.</span></td><td>Perovskitas, OPV, DSSC, puntos cuánticos, tándem</td><td>&gt;27% simple / &gt;34% tándem</td><td>Estabilidad, escalabilidad, toxicidad del Pb</td></tr>
+    </tbody>
+  </table>
+
+  <div class="g3">
+    <div class="card navy"><div class="card-lbl">1ª Generación</div><p>Band gap Si: <span class="fm">1.12 eV</span>. Domina el mercado (&gt;90%). Límite Shockley-Queisser ~29.4%.</p><div class="cite">[4][5]</div></div>
+    <div class="card gold"><div class="card-lbl">2ª Generación</div><p>Capas 1–10 μm vs ~200 μm del Si. CdTe: <span class="fm">1.45 eV</span>. CIGS: ajustable 1.0–1.7 eV.</p><div class="cite">[5]</div></div>
+    <div class="card teal"><div class="card-lbl">3ª Generación</div><p>De 3.8% (2009) a &gt;27% (2024). Récord 34.6% por LONGi. El avance más rápido en la historia de la PV.</p><div class="cite">[1][3]</div></div>
+  </div>
+  <div class="s-foot"><span>B1 · Generaciones fotovoltaicas</span><span>[1][3][4][5]</span></div>
+</section>
+
+
+<!-- ══ BLOQUE 2 ══ -->
+<div class="bdiv" id="b2">
+  <div class="bdiv-num">02</div>
+  <div class="bdiv-content">
+    <div class="bdiv-tag">Bloque 2 · 10 minutos</div>
+    <div class="bdiv-title">Perovskitas</div>
+  </div>
+  <div class="bdiv-time">10 min</div>
+</div>
+
+<!-- 2.1 -->
+<section class="slide">
+  <div class="s-eyebrow">B2 · Funcionamiento</div>
+  <h2 class="s-title">¿Cómo funciona <em>una celda solar?</em></h2>
+  <p class="s-sub">El efecto fotovoltaico y la estructura de capas del dispositivo</p>
+
+  <div class="g2">
+    <div class="col">
+      <div class="card navy">
+        <div class="card-lbl">Efecto fotovoltaico — 3 etapas</div>
+        <ul class="kp">
+          <li><strong>Absorción:</strong> fotón con energía &gt; band gap absorbido por el semiconductor [5]</li>
+          <li><strong>Generación:</strong> fotón excita un electrón → par e⁻ / h⁺ [5]</li>
+          <li><strong>Separación:</strong> campo eléctrico interno separa cargas → corriente eléctrica [5]</li>
+        </ul>
+        <div class="hl" style="margin-top:0.8rem;">
+          <p>El <strong>band gap</strong> determina qué fracción del espectro solar puede absorberse.</p>
+        </div>
+        <div class="cite">[5] Asim et al., 2012</div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <div class="card-lbl">Estructura de capas de la celda</div>
+        <table class="t">
+          <thead><tr><th>Capa</th><th>Función / Material típico</th></tr></thead>
+          <tbody>
+            <tr><td>Electrodo frontal</td><td>Vidrio + ITO o FTO — permite el paso de luz</td></tr>
+            <tr><td>ETL</td><td>TiO₂ o SnO₂ — extrae electrones</td></tr>
+            <tr><td><strong>Capa activa</strong></td><td>Material semiconductor — corazón de la celda</td></tr>
+            <tr><td>HTL</td><td>Spiro-OMeTAD, PTAA, NiO — extrae huecos</td></tr>
+            <tr><td>Electrodo posterior</td><td>Ag, Au o carbono</td></tr>
+          </tbody>
+        </table>
+        <div class="cite">[2] Afre & Pugliese, 2024</div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>B2 · Efecto fotovoltaico</span><span>[2][5]</span></div>
+</section>
+
+<!-- 2.2 -->
+<section class="slide">
+  <div class="s-eyebrow">B2 · Estructura cristalina</div>
+  <h2 class="s-title">Estructura <em>ABX₃</em> de las perovskitas</h2>
+  <p class="s-sub">El nombre proviene del mineral CaTiO₃, descubierto en 1839</p>
+
+  <div class="g46">
+    <div class="col">
+      <div class="abx3">
+        <div class="abx3-c a"><span class="abx3-sym">A</span><span class="abx3-role">Catión monovalente</span><div class="abx3-ex">MA⁺, FA⁺ (orgánico)<br>Cs⁺, Rb⁺ (inorgánico)<br><em>Determina estabilidad</em></div></div>
+        <div class="abx3-c b"><span class="abx3-sym">B</span><span class="abx3-role">Catión metálico divalente</span><div class="abx3-ex">Pb²⁺ — más eficiente<br>Sn²⁺ — libre de Pb<br>Ge²⁺ — investigación</div></div>
+        <div class="abx3-c x"><span class="abx3-sym">X</span><span class="abx3-role">Halógeno o mezcla</span><div class="abx3-ex">I⁻, Br⁻, Cl⁻<br>Mezclas I/Br permiten<br><em>tunear el band gap</em></div></div>
+      </div>
+      <div class="card">
+        <div class="card-lbl">Óxidos vs. Halogenadas</div>
+        <table class="t">
+          <thead><tr><th></th><th>ABO₃</th><th>ABX₃</th></tr></thead>
+          <tbody>
+            <tr><td>Estabilidad</td><td><span class="tag tag-t">Alta</span></td><td><span class="tag tag-g">Moderada</span></td></tr>
+            <tr><td>Absorción visible</td><td><span class="tag tag-r">Menor</span></td><td><span class="tag tag-t">Mayor</span></td></tr>
+            <tr><td>Band gap ajustable</td><td>No</td><td><span class="tag tag-t">Sí</span></td></tr>
+            <tr><td>Uso fotovoltaico</td><td>Limitado</td><td><span class="tag tag-t">Muy relevante</span></td></tr>
+          </tbody>
+        </table>
+        <div class="cite">Complemento · Sección 5</div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card navy">
+        <div class="card-lbl">Propiedades clave</div>
+        <ul class="kp">
+          <li><strong>Band gap sintonizable</strong> 1.2–2.3 eV ajustando X [1][3]</li>
+          <li><strong>Alto coeficiente de absorción</strong> — cientos de nm vs ~200 μm del Si [2]</li>
+          <li><strong>Tolerancia a defectos</strong> — facilita la fabricación [2]</li>
+          <li><strong>Fabricación en solución</strong> — spin coating a temperatura ambiente [1][2]</li>
+          <li><strong>Compatibilidad con Si</strong> — tándems &gt;34% PCE [3][1]</li>
+        </ul>
+        <div class="cite">[1][2][3]</div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>B2 · Estructura ABX₃</span><span>[1][2][3] · Complemento</span></div>
+</section>
+
+<!-- 2.3 -->
+<section class="slide">
+  <div class="s-eyebrow">B2 · Retos de investigación</div>
+  <h2 class="s-title">Los <em>cinco retos</em> que frenan la comercialización</h2>
+  <p class="s-sub">Barreras actuales de las PSC antes de competir con el silicio a escala</p>
+
+  <div class="g2">
+    <div class="col">
+      <div class="card navy"><div class="card-lbl">Reto 1 — Estabilidad</div><p>PSC se degradan en <strong>meses</strong> vs. 25–30 años del silicio. Causas: humedad, calor, UV, migración iónica, cambios de fase cristalina.</p><div class="cite">[1][2][3]</div></div>
+      <div class="card navy"><div class="card-lbl">Reto 2 — Brecha laboratorio / módulo</div><p>Celdas de laboratorio logran &gt;27%. Al escalar a módulos grandes la uniformidad se deteriora y la eficiencia cae considerablemente.</p><div class="cite">[1][3]</div></div>
+      <div class="card navy"><div class="card-lbl">Reto 3 — Toxicidad del Pb</div><p>Las PSC más eficientes usan plomo. Si el dispositivo se degrada o rompe en campo, el Pb puede liberarse y contaminar el entorno.</p><div class="cite">[1][2]</div></div>
+    </div>
+    <div class="col">
+      <div class="card gold"><div class="card-lbl">Reto 4 — Costo de fabricación</div><p>La ventaja económica de las perovskitas solo es real si se resuelven simultáneamente estabilidad y escalabilidad.</p><div class="cite">[5] · Complemento</div></div>
+      <div class="card gold"><div class="card-lbl">Reto 5 — Reproducibilidad</div><p>Las PSC presentan histéresis eléctrica. Reportar PCE sobre el área activa en lugar del dispositivo total infla resultados en literatura.</p><div class="cite">[4] Smestad et al., 2008</div></div>
+      <div class="hl teal">
+        <p><strong>Conexión computacional:</strong> DFT y dinámica molecular permiten estudiar migración iónica, defectos y estabilidad de fases sin experimentación costosa.</p>
+        <div class="cite">[1][3] · SolarCellsOFC</div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>B2 · Retos PSC</span><span>[1][2][3][4][5]</span></div>
+</section>
+
+
+<!-- ══ BLOQUE 3 ══ -->
+<div class="bdiv" id="b3">
+  <div class="bdiv-num">03</div>
+  <div class="bdiv-content">
+    <div class="bdiv-tag">Bloque 3 · 8 minutos</div>
+    <div class="bdiv-title">Minería de Datos</div>
+  </div>
+  <div class="bdiv-time">8 min</div>
+</div>
+
+<!-- 3.1 -->
+<section class="slide">
+  <div class="s-eyebrow">B3 · Minería de datos</div>
+  <h2 class="s-title"><em>Pymatgen</em> y Matminer</h2>
+  <p class="s-sub">Elementos elegidos: Si — <span class="fm">mp-641534</span> · Pb — <span class="fm">mp-23425</span></p>
+
+  <div class="g2">
+    <div class="col">
+      <div class="card navy">
+        <div class="card-lbl">¿Qué es minería de datos?</div>
+        <ul class="kp">
+          <li>Explorar grandes conjuntos de datos para descubrir patrones</li>
+          <li>En ciencia de materiales: miles de compuestos sin síntesis experimental</li>
+          <li>Permite filtrar por composición, estructura y <strong>band gap</strong></li>
+        </ul>
+        <div class="cite">Práctica 2 · [AWS]</div>
+      </div>
+      <div class="card">
+        <div class="card-lbl">¿Por qué Si y Pb?</div>
+        <ul class="kp">
+          <li><strong>Silicio:</strong> tecnología fotovoltaica dominante y consolidada</li>
+          <li><strong>Plomo:</strong> central en perovskitas halogenadas de alta eficiencia</li>
+          <li>Compara material <strong>tradicional</strong> vs. <strong>emergente</strong></li>
+        </ul>
+        <div class="cite">[2][3] · Práctica 2</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card teal">
+        <div class="card-lbl">Pymatgen</div>
+        <ul class="kp">
+          <li>Biblioteca Python para análisis de materiales [6]</li>
+          <li>API Materials Project — acceso a miles de estructuras [7]</li>
+          <li>Filtros por elemento, band gap y estabilidad</li>
+          <li>Búsqueda amplia → depuración progresiva</li>
+        </ul>
+        <div class="cite">[6][7] · Práctica 2</div>
+      </div>
+      <div class="card gold">
+        <div class="card-lbl">Matminer</div>
+        <ul class="kp">
+          <li>Minería sobre <strong>datasets estructurados</strong> [8]</li>
+          <li>Si → <span class="fm">mp_all_20181018</span></li>
+          <li>Pb → <span class="fm">castelli_perovskites</span></li>
+          <li>Tablas listas para análisis sistemático</li>
+        </ul>
+        <div class="cite">[8] · Práctica 2</div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>B3 · Minería de datos</span><span>[6][7][8] · Práctica 2</span></div>
+</section>
+
+<!-- 3.2 Notebooks -->
+<section class="slide">
+  <div class="s-eyebrow">B3 · Implementación</div>
+  <h2 class="s-title">Notebooks <em>implementados</em></h2>
+  <p class="s-sub">Código línea a línea — Pymatgen y Matminer</p>
+
+  <div class="g2">
+    <div class="nb">
+      <div class="nb-head">
+        <div class="nb-icon">🔬</div>
+        <div class="nb-info">
+          <span class="nb-name">mineriaPymatgen.ipynb</span>
+          <span class="nb-badge">Pymatgen · Materials Project</span>
+        </div>
+      </div>
+      <div class="nb-body">
+        <p class="nb-desc">Minería de materiales con Si y Pb desde Materials Project. Filtros por composición, band gap y estabilidad.</p>
+        <div class="code-wrap">
+          <div class="code-head">
+            <span class="code-lang">Python</span>
+            <a class="code-link" href="https://colab.research.google.com/drive/1z7QVkLLKNQrOLnsNAbO_egvX3SJAaNd?usp=sharing" target="_blank">↗ Abrir en Colab</a>
+          </div>
+          <div class="code-body"><pre><span class="k">from</span> <span class="n">pymatgen.ext.matproj</span> <span class="k">import</span> <span class="n">MPRester</span>
+<span class="c"># Conectar con Materials Project via API key</span>
+<span class="n">mpr</span> = <span class="f">MPRester</span>(<span class="s">'API_KEY'</span>)
+<span class="c"># Minería 1: materiales con Si o Pb</span>
+<span class="c"># Minería 2: filtro band gap FV (1.0–1.8 eV)</span>
+<span class="c"># Pb: filtro adicional por halógenos (I, Br, Cl)</span></pre></div>
+        </div>
+        <ol class="nb-steps">
+          <li>Importar y conectar con API de Materials Project</li>
+          <li>Búsqueda inicial de materiales con Si o Pb</li>
+          <li>Segunda minería filtrando por band gap</li>
+          <li>Para Pb: filtro adicional por halógenos</li>
+        </ol>
+        <a class="btn-nb" href="https://colab.research.google.com/drive/1z7QVkLLKNQrOLnsNAbO_egvX3SJAaNd?usp=sharing" target="_blank">↗ Ver notebook Pymatgen</a>
+      </div>
+    </div>
+
+    <div class="nb">
+      <div class="nb-head">
+        <div class="nb-icon">📊</div>
+        <div class="nb-info">
+          <span class="nb-name">mineriaMatminer.ipynb</span>
+          <span class="nb-badge">Matminer · Datasets</span>
+        </div>
+      </div>
+      <div class="nb-body">
+        <p class="nb-desc">Minería con datasets estructurados. Si: <span class="fm">mp_all_20181018</span> · Pb: <span class="fm">castelli_perovskites</span>.</p>
+        <div class="code-wrap">
+          <div class="code-head">
+            <span class="code-lang">Python</span>
+            <a class="code-link" href="https://colab.research.google.com/drive/1Ua7SNSxBXSF4UfcnJs2yT6-XMASW5WrB?usp=sharing" target="_blank">↗ Abrir en Colab</a>
+          </div>
+          <div class="code-body"><pre><span class="k">from</span> <span class="n">matminer.datasets</span> <span class="k">import</span> <span class="f">load_dataset</span>
+<span class="c"># Si: dataset general de Materials Project</span>
+<span class="n">df_si</span> = <span class="f">load_dataset</span>(<span class="s">"mp_all_20181018"</span>)
+<span class="c"># Pb: dataset especializado en perovskitas</span>
+<span class="n">df_pb</span> = <span class="f">load_dataset</span>(<span class="s">"castelli_perovskites"</span>)
+<span class="c"># Filtrar por band gap fotovoltaico</span></pre></div>
+        </div>
+        <ol class="nb-steps">
+          <li>Cargar dataset correspondiente a cada elemento</li>
+          <li>Filtrar por elemento de interés</li>
+          <li>Segunda minería por rango de band gap</li>
+          <li>Comparar resultados con Pymatgen</li>
+        </ol>
+        <a class="btn-nb" href="https://colab.research.google.com/drive/1Ua7SNSxBXSF4UfcnJs2yT6-XMASW5WrB?usp=sharing" target="_blank">↗ Ver notebook Matminer</a>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>B3 · Notebooks minería</span><span>Práctica 2 · Colab links</span></div>
+</section>
+
+<!-- 3.3 -->
+<section class="slide">
+  <div class="s-eyebrow">B3 · Resultados y selección</div>
+  <h2 class="s-title">Pymatgen vs. Matminer · <em>Cs₂PbCl₆</em></h2>
+  <p class="s-sub">Material seleccionado en Materials Project — mp-23425</p>
+
+  <div class="g2">
+    <div class="col">
+      <div class="card navy">
+        <div class="card-lbl">Comparación de herramientas</div>
+        <table class="t">
+          <thead><tr><th></th><th>Pymatgen</th><th>Matminer</th></tr></thead>
+          <tbody>
+            <tr><td>Enfoque</td><td>Materiales individuales</td><td>Datasets masivos</td></tr>
+            <tr><td>Búsqueda</td><td>Amplia → depuración</td><td>Guiada por dataset</td></tr>
+            <tr><td>Para Pb</td><td>Filtro por halógenos</td><td>castelli_perovskites</td></tr>
+            <tr><td>Conclusión</td><td colspan="2" style="text-align:center; font-style:italic;">Complementarias — no competidoras</td></tr>
+          </tbody>
+        </table>
+        <div class="cite">Práctica 2 · Sección 11</div>
+      </div>
+      <div class="card">
+        <div class="card-lbl">Cs₂PbCl₆ vs. otras perovskitas</div>
+        <table class="t">
+          <thead><tr><th>Material</th><th>Band gap</th><th>Nota</th></tr></thead>
+          <tbody>
+            <tr><td>MAPbI₃</td><td>~1.5 eV</td><td>Alta eficiencia, sensible a H₂O</td></tr>
+            <tr><td>FAPbI₃</td><td>~1.45 eV</td><td>Excelente absorción solar</td></tr>
+            <tr><td>CsPbBr₃</td><td>~2.3 eV</td><td>Mayor estabilidad térmica</td></tr>
+            <tr><td style="font-weight:600; color:var(--navy);">Cs₂PbCl₆</td><td>~3.0 eV</td><td>Alta estabilidad, modelado comp.</td></tr>
+          </tbody>
+        </table>
+        <div class="cite">Complemento · Sección 4</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card teal" style="height:100%; display:flex; flex-direction:column;">
+        <div class="card-lbl">Material seleccionado</div>
+        <p style="font-family:var(--display); font-size:2.4rem; font-weight:800; color:var(--navy); line-height:1; letter-spacing:-0.04em; margin-bottom:0.5rem;">Cs₂PbCl₆</p>
+        <p style="font-family:var(--mono); font-size:0.7rem; color:var(--ink3); margin-bottom:1rem;">mp-23425 · Band gap ~3.0 eV</p>
+        <ul class="kp" style="flex:1;">
+          <li>Contiene <strong>Pb</strong> — central en perovskitas halogenadas</li>
+          <li>Contiene halógeno <strong>Cl</strong> — familia ABX₃</li>
+          <li>Disponible en Materials Project con estructura CIF</li>
+          <li>Elegido por disponibilidad y relevancia computacional</li>
+          <li>Permite análisis completo: XRD → superficies → modelado</li>
+        </ul>
+        <div class="cite">Proyecto de Aula · Sección 6.2 · Complemento</div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>B3 · Resultados · Cs₂PbCl₆</span><span>Práctica 2 · Complemento · Proyecto de Aula</span></div>
+</section>
+
+
+<!-- ══ BLOQUE 4 ══ -->
+<div class="bdiv" id="b4">
+  <div class="bdiv-num">04</div>
+  <div class="bdiv-content">
+    <div class="bdiv-tag">Bloque 4 · 8 minutos</div>
+    <div class="bdiv-title">Difracción XRD y Superficies</div>
+  </div>
+  <div class="bdiv-time">8 min</div>
+</div>
+
+<!-- 4.1 -->
+<section class="slide">
+  <div class="s-eyebrow">B4 · Difracción de rayos X</div>
+  <h2 class="s-title">Patrón XRD de <em>Cs₂PbCl₆</em></h2>
+  <p class="s-sub">PyXtal + Matplotlib · Ley de Bragg: nλ = 2d·sin(θ)</p>
+
+  <div class="g2">
+    <div class="col">
+      <div class="card navy">
+        <div class="card-lbl">¿Qué es el patrón XRD?</div>
+        <ul class="kp">
+          <li>Permite estudiar la <strong>organización cristalina</strong> del material</li>
+          <li>Cada pico → familia de planos → <strong>índices de Miller (hkl)</strong></li>
+          <li>Picos definidos confirman el <strong>carácter cristalino</strong></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-lbl">3 señales más intensas — Cs₂PbCl₆</div>
+        <table class="t">
+          <thead><tr><th>#</th><th>2θ</th><th>hkl</th><th>Intensidad</th></tr></thead>
+          <tbody>
+            <tr><td style="color:var(--navy);font-weight:700;">1</td><td><span class="fm">23.859°</span></td><td>[2 2 0]</td><td style="color:var(--navy);font-weight:700;">100.00</td></tr>
+            <tr><td>2</td><td><span class="fm">175.933°</span></td><td>[13 3 3]</td><td>64.61</td></tr>
+            <tr><td>3</td><td><span class="fm">14.544°</span></td><td>[1 1 1]</td><td>62.82</td></tr>
+          </tbody>
+        </table>
+        <div class="cite">Proyecto de Aula · Sección 7 · Imagen 3</div>
+      </div>
+      <div class="nb">
+        <div class="nb-head">
+          <div class="nb-icon">⚗️</div>
+          <div class="nb-info"><span class="nb-name">difraccion_superficie.ipynb</span><span class="nb-badge">PyXtal · ASE</span></div>
+        </div>
+        <div class="nb-body">
+          <ol class="nb-steps">
+            <li>Descargar Cs₂PbCl₆ (mp-23425) en formato CIF</li>
+            <li>Leer con PyXtal: <span class="fm">.from_seed('material.cif')</span></li>
+            <li>Calcular XRD con <span class="fm">.get_XRD()</span></li>
+            <li>Graficar con Matplotlib — sticks y gaussianas</li>
+          </ol>
+          <a class="btn-nb" href="https://drive.google.com/file/d/1Hx69mAHYlFZvvupGfQsPJ71Av5IamZIG/view?usp=sharing" target="_blank">↗ Ver notebook</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="ph" style="min-height:270px;">
+        <span class="ph-ico">📊</span>
+        <span class="ph-lbl">Patrón XRD de Cs₂PbCl₆<br>Sticks — Sumas gaussianas</span>
+        <span class="ph-note">[ insertar Imágenes 1 y 2 del Proyecto de Aula ]</span>
+      </div>
+      <div class="card teal">
+        <div class="card-lbl">Interpretación</div>
+        <ul class="kp">
+          <li>Pico <span class="fm">[2 2 0]</span> a 23.859° — plano de mayor densidad atómica</li>
+          <li>Los 3 picos identificados → <strong>construcción de superficies</strong></li>
+          <li>Distribución refleja simetría cúbica del cristal</li>
+        </ul>
+        <div class="cite">Proyecto de Aula · Sección 7</div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>B4 · Difracción XRD Cs₂PbCl₆</span><span>Proyecto de Aula · Sección 7</span></div>
+</section>
+
+<!-- 4.2 -->
+<section class="slide">
+  <div class="s-eyebrow">B4 · Construcción de superficies</div>
+  <h2 class="s-title">Superficies con <em>ASE</em> — Aproximación del slab</h2>
+  <p class="s-sub">Planos (2,2,0) · (13,3,3) · (1,1,1) — los tres más intensos del XRD</p>
+
+  <div class="g2">
+    <div class="col">
+      <div class="card navy">
+        <div class="card-lbl">¿Qué es la aproximación del slab?</div>
+        <ul class="kp">
+          <li>Superficie = corte del cristal con <strong>capas atómicas</strong> + región de <strong>vacío</strong></li>
+          <li>Permite estudiar la interfaz del material con el ambiente</li>
+          <li>Relevante para: degradación, adsorción, estabilidad superficial</li>
+        </ul>
+        <div class="cite">Proyecto de Aula · Sección 8</div>
+      </div>
+      <div class="card">
+        <div class="card-lbl">Comparación de superficies</div>
+        <table class="t">
+          <thead><tr><th>Plano hkl</th><th>Observación clave</th></tr></thead>
+          <tbody>
+            <tr><td><span class="fm">(2,2,0)</span></td><td>Capas bien definidas y compactas — plano dominante</td></tr>
+            <tr><td><span class="fm">(13,3,3)</span></td><td>Slab muy alargado — alta asimetría cristalográfica</td></tr>
+            <tr><td><span class="fm">(1,1,1)</span></td><td>Diagonal amplia — mayor separación interláminar</td></tr>
+          </tbody>
+        </table>
+        <div class="cite">Proyecto de Aula · Sección 8</div>
+      </div>
+      <div class="hl">
+        <p>Las réplicas (3,3,1), (5,5,1) y (7,4,1) permiten visualizar <strong>periodicidad</strong> y comparar densidades atómicas superficiales.</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="ph" style="min-height:260px;">
+        <span class="ph-ico">🔬</span>
+        <span class="ph-lbl">Superficies (2,2,0) · (13,3,3) · (1,1,1)<br>Visualización normal y replicada</span>
+        <span class="ph-note">[ insertar Imagen 4 del Proyecto de Aula ]</span>
+      </div>
+      <a class="btn-nb" href="https://drive.google.com/file/d/1Hx69mAHYlFZvvupGfQsPJ71Av5IamZIG/view?usp=sharing" target="_blank" style="margin-top:0.3rem;">↗ Ver notebook superficies</a>
+    </div>
+  </div>
+  <div class="s-foot"><span>B4 · Superficies Cs₂PbCl₆</span><span>Proyecto de Aula · Sección 8</span></div>
+</section>
+
+
+<!-- ══ BLOQUE 5 ══ -->
+<div class="bdiv" id="b5">
+  <div class="bdiv-num">05</div>
+  <div class="bdiv-content">
+    <div class="bdiv-tag">Bloque 5 · 4 minutos</div>
+    <div class="bdiv-title">Nanopartículas + Conclusiones</div>
+  </div>
+  <div class="bdiv-time">4 min</div>
+</div>
+
+<!-- 5.1 -->
+<section class="slide">
+  <div class="s-eyebrow">B5 · Nanopartículas</div>
+  <h2 class="s-title">Nanopartículas de <em>Cu</em> y bimetálica Cu-Ni</h2>
+  <p class="s-sub">ASE + Wulffpack · Metal de transición: Cobre (Cu) fcc · a = 3.58 Å</p>
+
+  <div class="g2">
+    <div class="col">
+      <div class="card navy">
+        <div class="card-lbl">Tamaños obtenidos — Construcción Wulff</div>
+        <table class="t">
+          <thead><tr><th>Átomos</th><th>Tamaño (Å)</th><th>En nm</th></tr></thead>
+          <tbody>
+            <tr><td>500</td><td>20.252 Å</td><td><strong>2.025 nm</strong></td></tr>
+            <tr><td>2,000</td><td>32.909 Å</td><td><strong>3.291 nm</strong></td></tr>
+            <tr><td>5,000</td><td>45.566 Å</td><td><strong>4.557 nm</strong></td></tr>
+            <tr><td>10,000</td><td>58.278 Å</td><td><strong>5.828 nm</strong></td></tr>
+          </tbody>
+        </table>
+        <div class="cite">Proyecto de Aula · Sección 9 · Tabla 4</div>
+      </div>
+      <div class="hl gold">
+        <p>Con <strong>10,000 átomos</strong> el tamaño es ~5.8 nm. La escala <strong>nano</strong> (1–100 nm) y la escala <strong>micro</strong> (1,000 nm) están separadas por órdenes de magnitud.</p>
+      </div>
+      <div class="nb">
+        <div class="nb-head">
+          <div class="nb-icon">⚛️</div>
+          <div class="nb-info"><span class="nb-name">nanopariculas.ipynb · Cu-Ni bimetálica</span><span class="nb-badge">ASE · Wulffpack</span></div>
+        </div>
+        <div class="nb-body">
+          <ol class="nb-steps">
+            <li>XRD del Cu → energías superficiales (1,1,1), (2,0,0), (4,2,0)</li>
+            <li><span class="fm">SingleCrystal</span> de Wulffpack → nanopartícula</li>
+            <li>Cu-Ni: reemplazar 60% de átomos por Ni con NumPy aleatorio</li>
+            <li>Resultado: <span class="fm">Cu769Ni1152</span> — nanopartícula bimetálica</li>
+          </ol>
+          <a class="btn-nb" href="https://drive.google.com/file/d/1Rm_oEqc2Vg9lmCvFY4Hsi5YHUSnJMuAQ/view?usp=sharing" target="_blank">↗ Ver notebook</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="ph" style="min-height:220px;"><span class="ph-ico">⚛️</span><span class="ph-lbl">Nanopartículas Cu — 500, 2k, 5k, 10k átomos<br>Wulffpack + ASE</span><span class="ph-note">[ insertar Imagen 5 del Proyecto de Aula ]</span></div>
+      <div class="ph" style="min-height:150px;"><span class="ph-ico">●●</span><span class="ph-lbl">Cu original vs. Cu-Ni bimetálica</span><span class="ph-note">[ insertar Imagen 6 del Proyecto de Aula ]</span></div>
+    </div>
+  </div>
+  <div class="s-foot"><span>B5 · Nanopartículas</span><span>Proyecto de Aula · Secciones 9–10</span></div>
+</section>
+
+<!-- 5.2 Conclusiones -->
+<section class="slide">
+  <div class="s-eyebrow">B5 · Conclusiones</div>
+  <h2 class="s-title">Ciencia de materiales <em>computacional</em></h2>
+  <p class="s-sub">Lo que conecta celdas solares, perovskitas y herramientas computacionales</p>
+
+  <div class="g3">
+    <div class="card navy">
+      <div class="card-lbl">Desde la teoría</div>
+      <ul class="kp">
+        <li>Eficiencia determinada por <strong>band gap, composición y estabilidad</strong></li>
+        <li>Perovskitas avanzan rápido pero enfrentan retos críticos</li>
+        <li>Material prometedor ≠ material listo para comercialización</li>
+      </ul>
+      <div class="cite">[1][2][3][4][5]</div>
+    </div>
+    <div class="card teal">
+      <div class="card-lbl">Desde la computación</div>
+      <ul class="kp">
+        <li>Pymatgen + Matminer: miles de materiales sin síntesis</li>
+        <li>PyXtal: estructura cristalina → XRD directamente</li>
+        <li>ASE + Wulffpack: nanopartículas a escala atómica</li>
+      </ul>
+      <div class="cite">Proyecto de Aula · Sección 11</div>
+    </div>
+    <div class="card gold">
+      <div class="card-lbl">Perspectiva personal</div>
+      <ul class="kp">
+        <li>La química también se estudia mediante programación y bases de datos</li>
+        <li>Cs₂PbCl₆: elegido por relevancia computacional, no por máxima eficiencia</li>
+        <li>Reto: integrar varias herramientas en una sola línea de trabajo</li>
+      </ul>
+      <div class="cite">Proyecto de Aula · Sección 11</div>
+    </div>
+  </div>
+
+  <div class="hl" style="margin-top:1.3rem;">
+    <p>Las perovskitas halogenadas no van a reemplazar al silicio mañana — pero son la razón más relevante para investigar química de materiales computacionalmente hoy. Todas las herramientas usadas en este proyecto existen para acortar el camino del laboratorio a la aplicación.</p>
+  </div>
+
+  <div class="s-foot"><span>B5 · Conclusiones</span><span>Proyecto de Aula · Sección 11</span></div>
+</section>
+
+
+<!-- ══ REFERENCIAS ══ -->
+<div class="bdiv" id="refs" style="padding:2.2rem 5.5rem;">
+  <div class="bdiv-num" style="font-size:2.5rem;">REF</div>
+  <div class="bdiv-content">
+    <div class="bdiv-tag">Formato IEEE</div>
+    <div class="bdiv-title">Referencias</div>
+  </div>
+</div>
+
+<section class="slide">
+  <div class="s-eyebrow">Referencias bibliográficas</div>
+  <h2 class="s-title">Bibliografía <em>citada</em></h2>
+  <p class="s-sub">Formato IEEE · Todas las diapositivas citan la fuente correspondiente</p>
+
+  <ul class="ref-list">
+    <li><span class="r-num">[1]</span>C. Yang et al., "Achievements, challenges, and future prospects for industrialization of perovskite solar cells," <em>Light: Science &amp; Applications</em>, Dec. 2024. doi: 10.1038/s41377-024-01461-x</li>
+    <li><span class="r-num">[2]</span>R. A. Afre and D. Pugliese, "Perovskite Solar Cells: A Review…," <em>Micromachines</em>, vol. 15, no. 2, p. 192, 2024. doi: 10.3390/MI15020192</li>
+    <li><span class="r-num">[3]</span>X. Shen et al., "Key Advancements and Emerging Trends of Perovskite Solar Cells in 2024–2025," <em>Nano-Micro Letters</em>, vol. 18, no. 1, 2026. doi: 10.1007/S40820-025-02022-6</li>
+    <li><span class="r-num">[4]</span>G. P. Smestad et al., "Reporting solar cell efficiencies…," <em>Sol. Energy Mater. Sol. Cells</em>, vol. 92, no. 4, 2008. doi: 10.1016/J.SOLMAT.2008.01.003</li>
+    <li><span class="r-num">[5]</span>N. Asim et al., "A review on the role of materials science in solar cells," <em>Renewable Sustainable Energy Rev.</em>, vol. 16, no. 8, 2012. doi: 10.1016/J.RSER.2012.06.004</li>
+    <li><span class="r-num">[6]</span>S. P. Ong et al., "Python Materials Genomics (pymatgen)…," <em>Comput. Mater. Sci.</em>, vol. 68, pp. 314–319, 2013. doi: 10.1016/J.COMMATSCI.2012.10.028</li>
+    <li><span class="r-num">[7]</span>"Materials Project API." <a href="https://nextgen.materialsproject.org/api" target="_blank">https://nextgen.materialsproject.org/api</a></li>
+    <li><span class="r-num">[8]</span>"matminer documentation." <a href="https://hackingmaterials.lbl.gov/matminer/" target="_blank">https://hackingmaterials.lbl.gov/matminer/</a></li>
+    <li><span class="r-num">[9]</span>J. Rahm and P. Erhart, "WulffPack: A Python package for Wulff constructions," <em>J. Open Source Softw.</em>, vol. 5, no. 45, 2020. doi: 10.21105/JOSS.01944</li>
+    <li><span class="r-num">[10]</span>Y. Chen et al., "Multi-metallic nanoparticles: synthesis and catalytic applications," <em>Chemical Communications</em>, vol. 61, no. 65, 2025. doi: 10.1039/D5CC01468A</li>
+  </ul>
+
+  <hr class="sep">
+
+  <div style="display:flex; gap:3rem; flex-wrap:wrap; margin-top:0.5rem;">
+    <div>
+      <div style="font-family:var(--mono); font-size:0.6rem; color:var(--navy); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.12em;">Notebooks</div>
+      <p style="font-size:0.77rem; color:var(--ink2); line-height:1.9;">
+        Minería Pymatgen → <a href="https://colab.research.google.com/drive/1z7QVkLLKNQrOLnsNAbO_egvX3SJAaNd?usp=sharing" target="_blank">Colab</a><br>
+        Minería Matminer → <a href="https://colab.research.google.com/drive/1Ua7SNSxBXSF4UfcnJs2yT6-XMASW5WrB?usp=sharing" target="_blank">Colab</a><br>
+        Difracción + Superficies → <a href="https://drive.google.com/file/d/1Hx69mAHYlFZvvupGfQsPJ71Av5IamZIG/view?usp=sharing" target="_blank">Drive</a><br>
+        Nanopartículas mono → <a href="https://drive.google.com/file/d/1Rp_F0Mvav2ee0VARhcNnR2qZuI1I3XPw/view?usp=sharing" target="_blank">Drive</a><br>
+        Nanopartículas Cu-Ni → <a href="https://drive.google.com/file/d/1Rm_oEqc2Vg9lmCvFY4Hsi5YHUSnJMuAQ/view?usp=sharing" target="_blank">Drive</a>
+      </p>
+    </div>
+    <div>
+      <div style="font-family:var(--mono); font-size:0.6rem; color:var(--navy); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.12em;">Recursos adicionales</div>
+      <p style="font-size:0.77rem; color:var(--ink2); line-height:1.9;">
+        NREL · Manufacturing Cost Analysis for Photovoltaics<br>
+        IEA · Solar PV Reports · IRENA · Renewable Capacity Statistics<br>
+        U.S. DOE · Perovskite Solar Cells
+      </p>
+    </div>
+  </div>
+
+  <div class="s-foot"><span>Referencias · Formato IEEE</span><span>Química Computacional 1 · UdeM 2026-1</span></div>
+</section>
+
+</div>
+
+</body>
+</html>
